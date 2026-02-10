@@ -1,0 +1,2 @@
+set int set = 10
+set string list = "hello"
