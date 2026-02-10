@@ -1,0 +1,1 @@
+set list numbers = [5, 8, 12, 4, 10] set float sum = 0.0 set int counter = 0 set float average = 0.0 for each number in numbers { sum = sum + number counter = counter + 1} if (counter > 0) {average = sum / counter print average} else {print "divide by zero error"}
