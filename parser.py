@@ -36,8 +36,13 @@ ebnf = r"""
 
 def run_parser():
     # Gets the filename from the user.
-    print("\nWelcome to the EBNF Parser tool for CMPP-3020 Assignment 1.\nThis tool will parse a file containing code written in a specific EBNF grammar and display the parse tree.")
-    print("Multiple code examples are provided. 'code1.txt' contains the matching pseudocode from Part B, while other files contain other variations for testing.")
+    print("\nWelcome to the EBNF Parser tool for CMPP-3020 Assignment 1.\nThis tool will parse and verify a file containing code written in a specific EBNF grammar and display the parse tree.")
+    print("Multiple code examples are provided:")
+    print("'code1.txt' - Pseudocode example from Part B.")
+    print("'code2.txt' - Pseudocode, but without indentation and whitespace (one line).")
+    print("'code3.txt' - Setting identifer to same name as type (set int list = 2).")
+    print("'code4.txt' - Print statement test. Fails from empty print (print \"\").")
+    print("'code5.txt' - Order of operations example. average = sum / counter + 10 * 2. Fails as grammer only defined for 2 values.\n")
     filename = input("Enter the filename: ")
 
     # Try to open the file and read its contents. If the file is not found, catch the exception and print an error message.
@@ -55,7 +60,11 @@ def run_parser():
             parse_tree = parser.parse(user_code)
             print("\nParse successful and raised no exceptions.")
 
-            print(parse_tree.pretty())
+            view_tree = input("Would you like to view the parse tree? (Y/N): ").strip().upper()
+            if view_tree == 'Y':
+                print(parse_tree.pretty())
+            else:
+                return
 
         except Exception as e:
             print(f"Error parsing the code: {e}")
